@@ -1,1 +1,12 @@
-#!/bin/env sh
+#!/bin/sh
+
+set -eu
+
+chezmoi=chezmoi
+if [ ! "$(command -v $chezmoi)" ]; then
+    bin_dir="$HOME/.local/bin"
+    chezmoi="$bin_dir/chezmoi"
+    sh -c "$(curl -fsSL https://git.io/chezmoi)" -- -b "$bin_dir"
+fi
+
+exec "$chezmoi" init --apply --ssh github.com/yerejm/home
