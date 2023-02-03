@@ -3,7 +3,7 @@
 set -eufo pipefail
 
 for c in curl git; do
-    if command -v $c >/dev/null 2>&1; then
+    if ! command -v $c >/dev/null 2>&1; then
         >&2 echo "$c not available..."
         exit 1
     fi
