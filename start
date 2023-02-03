@@ -9,7 +9,7 @@ for c in curl git; do
     fi
 done
 
-if ! ssh -T git@github.com 2>&1 | grep yerejm >/dev/null 2>&1; then
+if [[ "$(ssh -T git@github.com 2>&1)" !~ yerejm ]]; then
     >&2 echo "No ssh access to github..."
     exit 1
 fi
