@@ -1,6 +1,18 @@
-#!/bin/sh
+#!/bin/bash
 
-set -eu
+set -eufo pipefail
+
+for c in curl git; do
+    if command -v $c >/dev/null 2>&1; then
+        >&2 echo "$c not available..."
+        exit 1
+    fi
+done
+
+if ! ssh -T git@github.com 2>&1 | grep yerejm >/dev/null 2>&1; then
+    >&2 echo "No ssh access to github..."
+    exit 1
+fi
 
 chezmoi=chezmoi
 if [ ! "$(command -v $chezmoi)" ]; then
