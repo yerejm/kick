@@ -3,13 +3,17 @@
 set -eufo pipefail
 
 for c in curl git; do
-    if ! command -v $c >/dev/null 2>&1; then
+    if command -v $c >/dev/null 2>&1; then
+        echo "$c OK"
+    else
         >&2 echo "$c not available..."
         exit 1
     fi
 done
 
-if [[ "$(ssh -T git@github.com 2>&1)" !~ yerejm ]]; then
+if [[ "$(ssh -T git@github.com 2>&1)" =~ yerejm ]]; then
+    echo "SSH OK"
+else
     >&2 echo "No ssh access to github..."
     exit 1
 fi
