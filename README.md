@@ -1,4 +1,4 @@
-/bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/yerejm/kick/master/start)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/yerejm/kick/master/start)"
 
 Pre-requisites:
 * curl, git (fedora dnf, debian apt, macos xcode)
